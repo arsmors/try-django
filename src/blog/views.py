@@ -33,6 +33,7 @@ def blog_post_create_view(request):
     form = BlogPostModelForm(request.POST or None)
     if form.is_valid():
         obj = form.save(commit=False)
+        obj.user = request.user
         obj.save()
         form = BlogPostModelForm()
     template_name = 'form.html'
@@ -48,10 +49,13 @@ def blog_post_detail_view(request, slug):
     return render(request, template_name, context)
 
 
-def blog_post_update_view(request):
+def blog_post_update_view(request, slug):
     obj = get_object_or_404(BlogPost, slug=slug)
-    template_name = 'blog/update.html'
-    context = {"object": obj, 'form': None}
+    form = BlogPostModelForm(request.POST or None, instance=obj)
+    if form.is_valid():
+        form.save()
+    template_name = 'form.html'
+    context = {'form': form, "title": f"Update {obj.title}"}
     return render(request, template_name, context)
 
 
