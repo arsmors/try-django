@@ -27,8 +27,8 @@ SECRET_KEY = '5vd#4wjp0&&sc8@mjp1y56xg8^t)@@uo7#0rs0npoo!eflkrf6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tryheroku123.herokuapp.com']
-# ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['tryheroku123.herokuapp.com']
+ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login'
 
@@ -79,13 +79,13 @@ WSGI_APPLICATION = 'try_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-#
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+
+}
 
 
 
@@ -141,9 +141,11 @@ MEDIA_URL = '/media/'
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 #g
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
 
 # db_from_env = dj_database_url.config(default='postgres://localhost')
 # DATABASES['default'].update(db_from_env)
-#DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+db_config =  dj_database_url.config()
+if db_config:
+    DATABASES['default'] =  db_config
