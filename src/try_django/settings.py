@@ -15,7 +15,6 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -26,7 +25,7 @@ SECRET_KEY = '5vd#4wjp0&&sc8@mjp1y56xg8^t)@@uo7#0rs0npoo!eflkrf6'
 DEBUG = True
 
 ALLOWED_HOSTS = ['tryheroku123.herokuapp.com']
-#ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login'
 
@@ -74,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'try_django.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -85,10 +83,6 @@ DATABASES = {
     }
 
 }
-
-prod_db  =  dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(prod_db)
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -108,7 +102,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
@@ -122,18 +115,17 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-#PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+# PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
 
 STATIC_URL = '/static/'
 
 LOCAL_STATIC_CDN_PATH = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn_test')
 
 STATIC_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'static')
-STATICFILES_DIRS =[
+STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'staticfiles')
 
 ]
@@ -143,6 +135,6 @@ MEDIA_URL = '/media/'
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-
 import dj_database_url
+
 DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
