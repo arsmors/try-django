@@ -27,8 +27,8 @@ SECRET_KEY = '5vd#4wjp0&&sc8@mjp1y56xg8^t)@@uo7#0rs0npoo!eflkrf6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-#ALLOWED_HOSTS = ['tryheroku123.herokuapp.com']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tryheroku123.herokuapp.com', '0.0.0.0', 'localhost', '127.0.0.1']
+#ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login'
 
@@ -146,6 +146,10 @@ STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # db_from_env = dj_database_url.config(default='postgres://localhost')
 # DATABASES['default'].update(db_from_env)
-db_config =  dj_database_url.config()
-if db_config:
-    DATABASES['default'] =  db_config
+
+# db_config =  dj_database_url.config()
+# if db_config:
+#     DATABASES['default'] =  db_config
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
