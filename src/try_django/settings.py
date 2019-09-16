@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 import dj_database_url
+import heroku as heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from django.conf.global_settings import DATABASES
