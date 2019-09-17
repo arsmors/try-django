@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
-import dj_database_url
-import heroku as heroku
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from django.conf.global_settings import DATABASES
@@ -124,33 +124,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-#PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
-
 STATIC_URL = '/static/'
 
 LOCAL_STATIC_CDN_PATH = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn_test')
 
-# STATIC_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'static')
 STATIC_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'static')
-STATICFILES_DIRS = [
+STATICFILES_DIRS =[
     os.path.join(BASE_DIR, 'staticfiles')
 
 ]
 
 MEDIA_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'media')
 MEDIA_URL = '/media/'
-
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
-#g
-# db_from_env = dj_database_url.config()
-# DATABASES['default'].update(db_from_env)
-
-# db_from_env = dj_database_url.config(default='postgres://localhost')
-# DATABASES['default'].update(db_from_env)
-
-# db_config =  dj_database_url.config()
-# if db_config:
-#     DATABASES['default'] =  db_config
-
-db_from_env = dj_database_url.config(conn_max_age=600)
-DATABASES['default'].update(db_from_env)
