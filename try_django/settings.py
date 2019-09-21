@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 
 import os
 
-
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from django.conf.global_settings import DATABASES
 
@@ -28,8 +26,8 @@ SECRET_KEY = '5vd#4wjp0&&sc8@mjp1y56xg8^t)@@uo7#0rs0npoo!eflkrf6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['tryheroku123.herokuapp.com', '0.0.0.0', 'localhost', '127.0.0.1']
-#ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['af55.herokuapp.com', '0.0.0.0', 'localhost', '127.0.0.1']
+# ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login'
 
@@ -44,9 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'searches',
+    'y66',
+
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
 ]
 
 ROOT_URLCONF = 'try_django.urls'
@@ -87,8 +87,6 @@ DATABASES = {
     }
 
 }
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -123,21 +121,54 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-STATIC_URL = '/static/'
-
-LOCAL_STATIC_CDN_PATH = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn_test')
-
-STATIC_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'static')
-STATICFILES_DIRS =[
-    os.path.join(BASE_DIR, 'staticfiles')
-
-]
-
-MEDIA_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'media')
-MEDIA_URL = '/media/'
-
+#
+# STATIC_URL = '/static/'
+#
+# LOCAL_STATIC_CDN_PATH = os.path.join(os.path.dirname(BASE_DIR), 'static_cdn_test')
+#
+# STATIC_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'static')
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'staticfiles')
+#
+# ]
+#
+# MEDIA_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'media')
+# MEDIA_URL = '/media/'
 
 import dj_database_url
-prod_db  =  dj_database_url.config(conn_max_age=500)
+
+prod_db = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(prod_db)
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+# PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+# STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+# STATIC_URL = '/static/'
+#
+# # Extra lookup directories for collectstatic to find static files
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_ROOT, 'static'),
+# )
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+import django_heroku
+
+django_heroku.settings(locals())
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+PROJECT_ROOT   =   os.path.join(os.path.abspath(__file__))
+STATIC_ROOT  =   os.path.join(PROJECT_ROOT, 'staticfiles')
+STATIC_URL = '/static/'
+
+# Extra lookup directories for collectstatic to find static files
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_ROOT, 'static'),
+)
+
+#  Add configuration for static files storage using whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
