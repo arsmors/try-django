@@ -158,3 +158,6 @@ DATABASES['default'].update(prod_db)
 
 #  Add configuration for static files storage using whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+import django_heroku
+django_heroku.settings(locals())
