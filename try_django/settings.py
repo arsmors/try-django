@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'searches',
-    'y66',
 
 ]
 
