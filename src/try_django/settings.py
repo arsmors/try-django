@@ -26,7 +26,7 @@ SECRET_KEY = '5vd#4wjp0&&sc8@mjp1y56xg8^t)@@uo7#0rs0npoo!eflkrf6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['ce123.herokuapp.com', '0.0.0.0', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ce1234.herokuapp.com', '0.0.0.0', 'localhost', '127.0.0.1']
 # ALLOWED_HOSTS = []
 
 LOGIN_URL = '/login'
